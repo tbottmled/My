@@ -2,18 +2,29 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link rel="stylesheet" href="./css/layui/css/layui.css">
+    <script src="./css/layui/layui.js"></script>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <div class="layui-layout-admin">
+      <div class="layui-header" style="-webkit-app-region:drag">
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
+      </div>
+      <div class="layui-side layui-bg-black" style="-webkit-app-region: drag">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
+              <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
+              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe679;</i></a>                            
+              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe675;</i></a>                              
+              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe66e;</i></a>                              
+              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe6ed;</i></a>                
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div> 
   </body>
 </html>

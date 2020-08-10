@@ -18,5 +18,8 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.1.2"
+  },
+  "dependencies": {
+    "layui-src": "^2.5.5"
   }
 }
