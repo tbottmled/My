@@ -7,24 +7,27 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <link rel="stylesheet" href="./css/layui/css/layui.css">
     <script src="./css/layui/layui.js"></script>
+    <script src="./js/my.js"></script>
   </head>
   <body>
     <div class="layui-layout-admin">
       <div class="layui-header" style="-webkit-app-region:drag">
 
       </div>
-      <div class="layui-side layui-bg-black" style="-webkit-app-region: drag">
-        <div class="layui-side-scroll">
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
-              <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
-              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe679;</i></a>                            
-              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe675;</i></a>                              
-              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe66e;</i></a>                              
-              <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe6ed;</i></a>                
-              </li>
-            </ul>
+      <div style="-webkit-app-region: no-drag">
+        <div class="layui-side layui-bg-black" style="-webkit-app-region: drag">
+          <div class="layui-side-scroll">
+              <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
+                <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
+                  <a href="javascript:;" onclick="pw()"><i class="layui-icon" style="font-size:25px">&#xe679;</i></a>
+                  <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe675;</i></a>
+                  <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe66e;</i></a>
+                  <a href="javascript:;"><i class="layui-icon" style="font-size:25px">&#xe6ed;</i></a>
+                </li>
+              </ul>
+          </div>
         </div>
       </div>
-    </div> 
+    </div>
   </body>
 </html>

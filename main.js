@@ -1,10 +1,13 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+const ipc = require('electron').ipcMain;
 const path = require('path')
+let newwin;
+let mainwin;
 
 function createWindow () {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainwin = new BrowserWindow({
     width: 65,
     height: 600,
     frame: false,
@@ -14,11 +17,25 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainwin.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  //mainwin.webContents.openDevTools();
 }
+
+ipc.on('pw',()=>{
+  newwin = new BrowserWindow({
+    width: 600, 
+    height: 600,
+    parent: mainwin,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true  //注入node模块
+    }
+  })
+  newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
+  //newwin.webContents.openDevTools();
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
