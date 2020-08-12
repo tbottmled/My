@@ -25,7 +25,7 @@ function createWindow () {
 
 ipc.on('pw',()=>{
   newwin = new BrowserWindow({
-    width: 600, 
+    width: 800, 
     height: 600,
     parent: mainwin,
     frame: false,
@@ -34,7 +34,7 @@ ipc.on('pw',()=>{
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
-  //newwin.webContents.openDevTools();
+  newwin.webContents.openDevTools();
 })
 
 // This method will be called when Electron has finished
