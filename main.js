@@ -12,7 +12,8 @@ function createWindow () {
     height: 600,
     frame: false,
     webPreferences: {
-      nodeIntegration:true
+      nodeIntegration:true,
+      webviewTag: true
     }
   })
 
@@ -25,16 +26,17 @@ function createWindow () {
 
 ipc.on('pw',()=>{
   newwin = new BrowserWindow({
-    width: 800, 
+    width: 900, 
     height: 600,
     parent: mainwin,
     frame: false,
     webPreferences: {
-      nodeIntegration: true  //注入node模块
+      nodeIntegration: true,  //注入node模块
+      webviewTag: true
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
-  newwin.webContents.openDevTools();
+  //newwin.webContents.openDevTools();
 })
 
 // This method will be called when Electron has finished
