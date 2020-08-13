@@ -36,7 +36,22 @@ ipc.on('pw',()=>{
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
-  //newwin.webContents.openDevTools();
+  newwin.webContents.openDevTools();
+})
+
+ipc.on('addpw',()=>{
+  newwin = new BrowserWindow({
+    width: 500, 
+    height: 650,
+    parent: mainwin,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true,  //注入node模块
+      webviewTag: true
+    }
+  })
+  newwin.loadURL(path.join('file:',__dirname,'page/addpw.html')); //new.html是新开窗口的渲染进程
+  newwin.webContents.openDevTools();
 })
 
 // This method will be called when Electron has finished

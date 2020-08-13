@@ -7,47 +7,41 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <link rel="stylesheet" href="../css/layui/css/layui.css">
     <script src="../css/layui/layui.js"></script>
+    <script src="../js/pwband.js"></script>
     <script src="../js/my.js"></script>
   </head>
   <body class="layui-layout-body">
     <div class="layui-row">
       <div class="layui-col-md3">
-        <div class="layui-side layui-bg-black" style="-webkit-app-region: drag;">
-          <div class="layui-side-scroll">
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
+        <div class="layui-side layui-bg-gray" style="-webkit-app-region: drag;">
+            <ul class="layui-nav layui-nav-tree layui-bg-gray" color:darkgrey;  lay-filter="test" >
               <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
-                  <input class="layui-input" style="width: 150px;" name="id" id="demoReload" autocomplete="off">
+                <a href="javascript:;" onclick="nav('./pwband.html');"><i class="layui-icon" style="font-size:17px;color: black;">&#xe683; 银行卡密码</i></a>
               </li>
             </ul>
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
+            <ul class="layui-nav layui-nav-tree layui-bg-gray"  lay-filter="test" >
               <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
-                <a href="javascript:;" onclick="nav('./pwband.html');"><i class="layui-icon" style="font-size:17px">&#xe683; 银行卡密码</i></a>
-              </li>
-            </ul>
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
-              <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
-                <a href="javascript:;"><i class="layui-icon" style="font-size:17px">&#xe67f; 电脑密码</i></a>
+                <a href="javascript:;"><i class="layui-icon" style="font-size:17px;color: black;">&#xe67f; 电脑密码</i></a>
               </li>                         
             </ul>          
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
+            <ul class="layui-nav layui-nav-tree layui-bg-gray"  lay-filter="test" >
               <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
-                <a href="javascript:;"><i class="layui-icon" style="font-size:17px">&#xe66e; 路由器密码</i></a>
+                <a href="javascript:;"><i class="layui-icon" style="font-size:17px;color: black;">&#xe66e; 路由器密码</i></a>
               </li>                         
             </ul>          
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
+            <ul class="layui-nav layui-nav-tree layui-bg-gray"  lay-filter="test" >
               <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
-                <a href="javascript:;"><i class="layui-icon" style="font-size:17px">&#xe618; 邮箱密码</i></a>
+                <a href="javascript:;"><i class="layui-icon" style="font-size:17px;color: black;">&#xe618; 邮箱密码</i></a>
               </li>                         
             </ul>
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
+            <ul class="layui-nav layui-nav-tree layui-bg-gray"  lay-filter="test" >
               <li class="layui-nav-item layui-nav-itemed" style="-webkit-app-region: no-drag">
-                <a href="javascript:;"><i class="layui-icon" style="font-size:15px">&#xe6ed; 其他密码</i></a>
+                <a href="javascript:;"><i class="layui-icon" style="font-size:17px;color: black;">&#xe6ed; 其他密码</i></a>
               </li>                         
             </ul>
-          </div>  
+          </div>
         </div>
-      </div>
-      <div class="layui-col-md9">
+        <div class="layui-col-md9">
         <!-- <div class="layui-layout-admin">
           <div class="layui-header" style="-webkit-app-region:drag; height:38px;">
             <ul class="layui-layout-right noDrag">
@@ -59,7 +53,11 @@
         </div> -->
         <div class="layui-body">
           <webview id="appcontent" style="width:100%; height:100%" autosize nodeintegration></webview>
+          <ul class="layui-fixbar" style="color: #F0F0F0;">
+            <li class="layui-icon" onclick="addpw()" lay-type="bar1">&#xe654;</li>
+          </ul>
         </div>
+      </div>
     </div>
   </body>
 </html>
