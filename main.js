@@ -4,6 +4,7 @@ const ipc = require('electron').ipcMain;
 const path = require('path')
 let newwin;
 let mainwin;
+var position;
 
 function createWindow () {
   // Create the browser window.
@@ -19,7 +20,8 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainwin.loadFile('index.html')
-
+  position = mainwin.getPosition();
+  mainwin.setPosition(position[0] - 300,position[1])
   // Open the DevTools.
   //mainwin.webContents.openDevTools();
 }
@@ -36,7 +38,8 @@ ipc.on('pw',()=>{
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
-  newwin.webContents.openDevTools();
+  newwin.setPosition(position[0] - 235,position[1]);
+  //newwin.webContents.openDevTools();
 })
 
 ipc.on('addpw',()=>{
