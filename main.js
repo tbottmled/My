@@ -6,6 +6,16 @@ let newwin;
 let mainwin;
 var position;
 
+//import database
+var SqliteDB = require('./js/db.js').SqliteDB;
+var file = "my.db";
+var sqliteDB = new SqliteDB(file);
+// create table.
+var createPassWordTableSql = "create table if not exists password(level INTEGER, column INTEGER, row INTEGER, content BLOB);";
+//var createLabelTableSql = "create table if not exists labels(level INTEGER, longitude REAL, latitude REAL, content BLOB);";
+sqliteDB.createTable(createPassWordTableSql);
+//sqliteDB.createTable(createLabelTableSql);
+ 
 function createWindow () {
   // Create the browser window.
   mainwin = new BrowserWindow({
