@@ -8,12 +8,14 @@ var position;
 
 //import database
 var SqliteDB = require('./js/db.js').SqliteDB;
-var file = "my.db";
-var sqliteDB = new SqliteDB(file);
+var sqlitedb = new SqliteDB('my.db');
 // create table.
 var createPassWordTableSql = "create table if not exists password(bandname INTEGER, password INTEGER, row INTEGER, content BLOB);";
 //var createLabelTableSql = "create table if not exists labels(level INTEGER, longitude REAL, latitude REAL, content BLOB);";
-sqliteDB.createTable(createPassWordTableSql);
+sqlitedb.createTable(createPassWordTableSql);
+// var tileData = [[1, 10, 10,1], [1, 11, 11,2], [1, 10, 9,3], [1, 11, 9,4]];
+// var insertTileSql = "insert into password(bandname, cardnum, password, content) values(?, ?, ?, ?)";
+// sqlitedb.insertData(insertTileSqltileData);
 //sqliteDB.createTable(createLabelTableSql);
  
 function createWindow () {
@@ -55,12 +57,11 @@ ipc.on('pw',()=>{
 ipc.on('addpw',()=>{
   newwin = new BrowserWindow({
     width: 500, 
-    height: 650,
+    height: 400,
     parent: mainwin,
     frame: false,
     webPreferences: {
-      nodeIntegration: true,  //注入node模块
-      webviewTag: true
+      nodeIntegration: true  //注入node模块
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/addpw.html')); //new.html是新开窗口的渲染进程

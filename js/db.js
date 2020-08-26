@@ -5,7 +5,6 @@ var DB = DB || {};
  
 DB.SqliteDB = function(file){
     DB.db = new sqlite3.Database(file);
- 
     DB.exist = fs.existsSync(file);
     if(!DB.exist){
         console.log("Creating db file!");
