@@ -1,7 +1,8 @@
+var DB = {};
 var fs = require('fs');
 var sqlite3 = require('sqlite3').verbose();
  
-var DB = DB || {};
+
  
 DB.SqliteDB = function(file){
     DB.db = new sqlite3.Database(file);
@@ -44,7 +45,6 @@ DB.SqliteDB.prototype.queryData = function(sql, callback){
             DB.printErrorInfo(err);
             return;
         }
- 
         /// deal query data.
         if(callback){
             callback(rows);
@@ -65,4 +65,5 @@ DB.SqliteDB.prototype.close = function(){
 };
  
 /// export SqliteDB.
-exports.SqliteDB = DB.SqliteDB;
+//exports.SqliteDB = DB.SqliteDB;
+module.exports.SqliteDB = DB.SqliteDB;

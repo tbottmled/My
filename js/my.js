@@ -5,6 +5,9 @@ function pw(){
 function addpw(){
     ipc.send("addpw");
 }
+function newClose(){
+    ipc.send("newClose");
+}
 function nav(src_str){
     console.log(src_str);
     const webview = document.getElementById('appcontent');

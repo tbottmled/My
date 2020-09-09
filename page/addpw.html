@@ -9,13 +9,14 @@
     <script src="../css/layui/layui.js"></script>
     <script src="../js/pwband.js"></script>
     <script src="../js/my.js"></script>
+    <script src="../js/db.js"></script>
   </head>
   <body class="layui-layout-body layui-bg-black">
     <div class="layui-layout-admin">
-        <div class="layui-header" style="-webkit-app-region:drag; height:40px;">
+        <div class="layui-header" class="layui-nav-item noDrag" style="-webkit-app-region:drag;cursor:pointer;height: 40px;">
           <ul class="layui-layout-right noDrag">
-            <li class="layui-nav-item">
-              <i id="closed" class="layui-icon" style="font-size:38px;color: black;">&#x1006;</i>
+            <li class="layui-nav-item" onclick="newClose();">
+              <i id="closed" class="layui-icon"  style="-webkit-app-region:no-drag;font-size:38px;color: white;">&#x1006;</i>
             </li>
           </ul>
         </div>
