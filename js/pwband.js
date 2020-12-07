@@ -24,19 +24,7 @@ function Read_Init()
 {
   var querySql = 'select * from password';
   var queryData = null;
-  sqlitedb.selectAll(querySql,queryData);
-  console.log(queryData);
-
-  var ul = document.getElementById("pwlist");  
-  var li = document.createElement("li");
-                     
-  var a = document.createElement("a");
-  var i = document.createElement("i");
-  i.innerHTML = "&#xe683; 3" + queryData[0].bandname;//步骤名称
-  ul.appendChild(li);
-  li.appendChild(a)
-  a.appendChild(i);
-
+  sqlitedb.queryData(querySql,dealdata);
   // var cmdconent = {"cmdtype":"100","data":""};
   // $.ajax({
   //     url: 'http://localhost:8520/',
@@ -61,19 +49,29 @@ function Read_Init()
   // });
 }
 
-// window.onload =function() { 
-//   var querySql = 'select * from password';
-//   var queryData = null;
-//   sqlitedb.selectAll(querySql,queryData);
-//   console.log(queryData);
+function dealdata(objects){
+  var ul = document.getElementById("pwlist");
+  objects.forEach(object => {
+    var li = document.createElement("li");
+    li.classList.add("layui-nav-item","layui-nav-itemed");
+    li.style  = "-webkit-app-region: no-drag";     
+    li.id = object.pw_id;    
+    //li.click.bind     
+    li.onclick= "nav('./pwdetail.html')";
+    var a = document.createElement("a");
+    a.style = "font-size:17px;color: black;";
+    a.href = "javascript:;";
+    var i = document.createElement("i");
+    i.style = "font-size:17px;color: black;";
+    i.classList.add("layui-icon");
+    i.innerHTML = "&#xe683; " + object.bandname;//密码名称
+    ul.appendChild(li);
+    li.appendChild(a)
+    a.appendChild(i);
+  });
+}
 
-//   var ul = document.getElementById("pwlist");  
-//         var li = document.createElement("li");
-                     
-//         var a = document.createElement("a");
-//         var i = document.createElement("i");
-//         i.innerHTML = "&#xe683; 3" + queryData[0].bandname;//步骤名称
-//         ul.appendChild(li);
-//         li.appendChild(a)
-//         a.appendChild(i);
-// };
+function nav(src){
+  const webview = document.getElementById('secondappcontent');
+  webview.src = src;
+}
