@@ -11,7 +11,7 @@ var position;
 var SqliteDB = require('./js/db.js').SqliteDB;
 var sqlitedb = new SqliteDB('my.db');
 // create table.
-var createPassWordTableSql = "create table if not exists password(bandname INTEGER, password INTEGER, row INTEGER, content BLOB);";
+var createPassWordTableSql = "create table if not exists password(pw_id INTEGER, bandname CHAR, cardnum CHAR,password CHAR, content CHAR);";
 //var createLabelTableSql = "create table if not exists labels(level INTEGER, longitude REAL, latitude REAL, content BLOB);";
 sqlitedb.createTable(createPassWordTableSql);
 // var tileData = [[1, 10, 10,1], [1, 11, 11,2], [1, 10, 9,3], [1, 11, 9,4]];
