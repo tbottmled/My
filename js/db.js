@@ -51,6 +51,16 @@ DB.SqliteDB.prototype.queryData = function(sql, callback){
         }
     });
 };
+
+DB.SqliteDB.prototype.selectAll = function select_user(sql,data){
+    DB.db.each(sql, function(err, rows){
+		if(!err){
+            data += rows;
+		} else {
+			throw err;
+		}
+    });
+}
  
 DB.SqliteDB.prototype.executeSql = function(sql){
     DB.db.run(sql, function(err){

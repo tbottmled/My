@@ -2,6 +2,7 @@
 const {app, BrowserWindow} = require('electron')
 const ipc = require('electron').ipcMain;
 const path = require('path')
+const http = require('http');
 let newwin;
 let mainwin;
 var position;
@@ -51,7 +52,7 @@ ipc.on('pw',()=>{
   })
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
   newwin.setPosition(position[0] - 235,position[1]);
-  //newwin.webContents.openDevTools();
+  newwin.webContents.openDevTools();
 })
 
 ipc.on('addpw',()=>{
@@ -93,3 +94,14 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+http.createServer(function(req,res){
+  //查询密码信息
+  var querySql = "select * from password";
+  var queryData = sqlitedb.selectAll(querySql);
+  console.log(queryData);
+  res.end(JSON.stringify(queryData));
+}).listen(8520);
+
+// function dataDeal(objects){
+//   queryData = objects;
+// }
