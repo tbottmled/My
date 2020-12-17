@@ -20,33 +20,9 @@ layui.use('form', function(){
 });
 
 //读取密码,初始化列表
-function Read_Init()
-{
+function Read_Init(){
   var querySql = 'select * from password';
-  var queryData = null;
   sqlitedb.queryData(querySql,dealdata);
-  // var cmdconent = {"cmdtype":"100","data":""};
-  // $.ajax({
-  //     url: 'http://localhost:8520/',
-  //     type: "POST",
-  //     contentType: "application/json;charset=UTF-8",//设置请求头信息
-  //     dataType:"json",
-  //     data: JSON.stringify(cmdconent),
-  //     success: function (data) {
-  //       var ul = document.getElementById("pwlist");  
-  //       var li = document.createElement("li");
-                     
-  //       var a = document.createElement("a");
-  //       var i = document.createElement("i");
-  //       i.innerHTML = "&#xe683; 3";//步骤名称
-  //       ul.appendChild(li);
-  //       li.appendChild(a)
-  //       a.appendChild(i);
-  //         // $.each(data, function (index, item) {
-  //         //     $('#pwlist').append("3");//动态生成列表
-  //         // });
-  //     }
-  // });
 }
 
 function dealdata(objects){
@@ -66,12 +42,7 @@ function dealdata(objects){
     i.classList.add("layui-icon");
     i.innerHTML = "&#xe683; " + object.bandname;//密码名称
     ul.appendChild(li);
-    li.appendChild(a)
+    li.appendChild(a);
     a.appendChild(i);
   });
-}
-
-function nav(src){
-  const webview = document.getElementById('secondappcontent');
-  webview.src = src;
 }

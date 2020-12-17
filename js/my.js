@@ -13,3 +13,4 @@ function nav(src_str){
     const webview = document.getElementById('appcontent');
     webview.src = src_str;
 }
+

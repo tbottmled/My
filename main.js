@@ -94,13 +94,6 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-http.createServer(function(req,res){
-  //查询密码信息
-  var querySql = "select * from password";
-  var queryData = sqlitedb.selectAll(querySql);
-  console.log(queryData);
-  res.end(JSON.stringify(queryData));
-}).listen(8520);
 
 // function dataDeal(objects){
 //   queryData = objects;
