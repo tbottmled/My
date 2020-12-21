@@ -36,7 +36,7 @@ function createWindow () {
   position = mainwin.getPosition();
   mainwin.setPosition(position[0] - 300,position[1])
   // Open the DevTools.
-  //mainwin.webContents.openDevTools();
+  mainwin.webContents.openDevTools();
 }
 
 ipc.on('pw',()=>{
@@ -51,6 +51,7 @@ ipc.on('pw',()=>{
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
+  //newwin.
   newwin.setPosition(position[0] - 235,position[1]);
   newwin.webContents.openDevTools();
 })
