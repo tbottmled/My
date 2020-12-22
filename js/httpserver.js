@@ -1,6 +1,6 @@
 var Httpserver = {};
 var http = require('http');
-var request = require('request').verbose();
+var request = require('request');
 
 http.createServer(function(req,res){
     //查询密码信息
@@ -10,8 +10,12 @@ http.createServer(function(req,res){
     res.end(JSON.stringify(queryData));
 }).listen(8520);
 
+Httpserver.server = function(){
+
+}
+
 //发送http get请求
-Httpserver.get = function HttpGetRequest(url){
+Httpserver.server.prototype.get = function HttpGetRequest(url){
     request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           console.log(body);
@@ -21,7 +25,7 @@ Httpserver.get = function HttpGetRequest(url){
 }
 
 //发送http post请求
-Httpserver.post = function HttpPostRequest(url,requestData){
+Httpserver.server.prototype.post = function HttpPostRequest(url,requestData){
     request({
         url: url,
         method: "POST",
@@ -37,4 +41,4 @@ Httpserver.post = function HttpPostRequest(url,requestData){
     });
 }
 
-module.exports.Httpserver = Httpserver;
+module.exports.server = Httpserver.server;

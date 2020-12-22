@@ -1,9 +1,7 @@
 var DB = {};
 var fs = require('fs');
 var sqlite3 = require('sqlite3').verbose();
- 
 
- 
 DB.SqliteDB = function(file){
     DB.db = new sqlite3.Database(file);
     DB.exist = fs.existsSync(file);

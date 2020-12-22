@@ -70,6 +70,20 @@ ipc.on('addpw',()=>{
   newwin.webContents.openDevTools();
 })
 
+ipc.on('weibo',()=>{
+  newwin = new BrowserWindow({
+    width: 250, 
+    height: 600,
+    parent: mainwin,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true//注入node模块
+    }
+  })
+  newwin.loadURL(path.join('file:',__dirname,'page/weibo.html')); //new.html是新开窗口的渲染进程
+  newwin.webContents.openDevTools();
+})
+
 ipc.on('newClose',() => {
   newwin.close();
 })

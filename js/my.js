@@ -5,6 +5,9 @@ function pw(){
 function addpw(){
     ipc.send("addpw");
 }
+function weibo(){
+    ipc.send("weibo");
+}
 function newClose(){
     ipc.send("newClose");
 }
