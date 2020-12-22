@@ -1,5 +1,6 @@
 var httprequest = require('../js/httpserver.js').server;
 var server = new httprequest();
+const ipc = require('electron').ipcRenderer;
 
 var loginurl = "https://api.weibo.com/oauth2/authorize";
 var appkey = "2110492170";
@@ -9,7 +10,8 @@ var display = "client";
 
 function login(){
     url = loginurl + "?display=" + display + "&client_id=" + appkey + "&redirect_uri=" + callbackurl;
-    var data = server.get(url);
+    ipc.send("login",url)
+    //var data = server.get(url);
     console.log(data);
     //nav(data);
 }

@@ -36,7 +36,7 @@ function createWindow () {
   position = mainwin.getPosition();
   mainwin.setPosition(position[0] - 300,position[1])
   // Open the DevTools.
-  mainwin.webContents.openDevTools();
+  //mainwin.webContents.openDevTools();
 }
 
 ipc.on('pw',()=>{
@@ -81,6 +81,20 @@ ipc.on('weibo',()=>{
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/weibo.html')); //new.html是新开窗口的渲染进程
+  newwin.webContents.openDevTools();
+})
+
+ipc.on('login',(event, arg)=>{
+  newwin = new BrowserWindow({
+    width: 250, 
+    height: 300,
+    parent: mainwin,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true//注入node模块
+    }
+  })
+  newwin.loadURL(arg); //new.html是新开窗口的渲染进程
   newwin.webContents.openDevTools();
 })
 
