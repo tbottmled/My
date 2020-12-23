@@ -72,7 +72,7 @@ ipc.on('addpw',()=>{
 
 ipc.on('weibo',()=>{
   newwin = new BrowserWindow({
-    width: 250, 
+    width: 400, 
     height: 600,
     parent: mainwin,
     frame: false,
@@ -86,10 +86,9 @@ ipc.on('weibo',()=>{
 
 ipc.on('login',(event, arg)=>{
   newwin = new BrowserWindow({
-    width: 250, 
-    height: 300,
-    parent: mainwin,
-    frame: false,
+    width: 600, 
+    height: 480,
+    parent: newwin,
     webPreferences: {
       nodeIntegration: true//注入node模块
     }
@@ -105,8 +104,7 @@ ipc.on('newClose',() => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow()
-  
+  createWindow();
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

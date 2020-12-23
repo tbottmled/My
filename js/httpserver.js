@@ -1,17 +1,20 @@
 var Httpserver = {};
 var http = require('http');
+var url = require('url');
 var request = require('request');
-
-http.createServer(function(req,res){
-    //查询密码信息
-    var querySql = "select * from password";
-    var queryData = sqlitedb.selectAll(querySql);
-    console.log(queryData);
-    res.end(JSON.stringify(queryData));
-}).listen(8520);
+var qs=require('querystring');
 
 Httpserver.server = function(){
 
+}
+
+Httpserver.server.prototype.respone = function HeepRespone(){
+    http.createServer(function(req,res){
+        var arg = url.parse(req.url).query;
+        var code = qs.parse(arg)['code']; 
+        //保存code
+        res.end(code);
+    }).listen(8050);
 }
 
 //发送http get请求
@@ -36,7 +39,7 @@ Httpserver.server.prototype.post = function HttpPostRequest(url,requestData){
         body: JSON.stringify(requestData)
     }, function(error, response, body) {
         if (!error && response.statusCode == 200) {
-            
+            response.end(JSON.stringify(body))
         }
     });
 }
