@@ -36,7 +36,7 @@ function createWindow () {
   position = mainwin.getPosition();
   mainwin.setPosition(position[0] - 300,position[1])
   // Open the DevTools.
-  //mainwin.webContents.openDevTools();
+  mainwin.webContents.openDevTools();
 }
 
 ipc.on('pw',()=>{
@@ -95,6 +95,10 @@ ipc.on('login',(event, arg)=>{
   })
   newwin.loadURL(arg); //new.html是新开窗口的渲染进程
   newwin.webContents.openDevTools();
+})
+
+ipc.on('wbloginclose',()=>{
+  newwin.close();
 })
 
 ipc.on('newClose',() => {
