@@ -36,7 +36,7 @@ function login(){
     data.redirect_uri = callbackurl;
     console.log(data);
     server.post("https://api.weibo.com/oauth2/access_token?client_id="+ appkey + 
-    "&client_secret="+ appsecret + "&grant_type=authorization_code"+ "&code=" + "ece900b801a08bfa144c41db1444acaf" + "&redirect_uri=" + callbackurl,data);
+    "&client_secret="+ appsecret + "&grant_type=authorization_code"+ "&code=" + "ece900b801a08bfa144c41db1444acaf" + "&redirect_uri=" + callbackurl,"");
 
     //关闭登录窗口
     //ipc.send("wbloginclose");
