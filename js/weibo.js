@@ -32,10 +32,12 @@ function login(){
     data.client_id = "2110492170";
     data.client_secret = "6d623742beb0d11d930e5fbb91d82cae";
     data.grant_type = "authorization_code";
-    data.code = code;
-    redirect_uri = "http://127.0.0.1:8050/code_handle";
-    var token = server.post("https://api.weibo.com/oauth2/access_token",data);
-    console.log(JSON.stringify(token));
+    //data.code = code;
+    data.redirect_uri = callbackurl;
+    console.log(data);
+    server.post("https://api.weibo.com/oauth2/access_token?client_id="+ appkey + 
+    "&client_secret="+ appsecret + "&grant_type=authorization_code"+ "&code=" + "ece900b801a08bfa144c41db1444acaf" + "&redirect_uri=" + callbackurl,data);
+
     //关闭登录窗口
     //ipc.send("wbloginclose");
     //关闭数据库

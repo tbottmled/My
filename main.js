@@ -86,8 +86,8 @@ ipc.on('weibo',()=>{
 
 ipc.on('login',(event, arg)=>{
   newwin = new BrowserWindow({
-    width: 600, 
-    height: 480,
+    width: 690, 
+    height: 400,
     parent: newwin,
     webPreferences: {
       nodeIntegration: true//注入node模块

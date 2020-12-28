@@ -48,6 +48,7 @@ Httpserver.server.prototype.post = function HttpPostRequest(url,requestData){
         body: JSON.stringify(requestData)
     }, function(error, response, body) {
         if (!error && response.statusCode == 200) {
+            console.log(JSON.stringify(body));
             response.end(JSON.stringify(body));
         }
     });
