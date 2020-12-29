@@ -1,6 +1,6 @@
 //http服务
 var httprequest = require('../js/httpserver.js').server;
-var server = new httprequest();
+//var server = new httprequest();
 //数据库服务
 var SqliteDB = require('../js/db.js').SqliteDB;
 var sqlitedb = new SqliteDB('my.db');
@@ -32,11 +32,11 @@ function login(){
     data.client_id = "2110492170";
     data.client_secret = "6d623742beb0d11d930e5fbb91d82cae";
     data.grant_type = "authorization_code";
-    //data.code = code;
+    data.code = code;
     data.redirect_uri = callbackurl;
     console.log(data);
-    server.post("https://api.weibo.com/oauth2/access_token?client_id="+ appkey + 
-    "&client_secret="+ appsecret + "&grant_type=authorization_code"+ "&code=" + "ece900b801a08bfa144c41db1444acaf" + "&redirect_uri=" + callbackurl,"");
+    httprequest.post("https://api.weibo.com/oauth2/access_token?client_id="+ appkey + 
+    "&client_secret="+ appsecret + "&grant_type=authorization_code"+ "&code=" + code + "&redirect_uri=" + callbackurl,"");
 
     //关闭登录窗口
     //ipc.send("wbloginclose");
