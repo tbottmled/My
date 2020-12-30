@@ -1,5 +1,5 @@
-var httprequest = require('./js/httpserver.js');
-// var server = new httprequest();
+var httprequest = require('./js/httpserver.js').server;
+var server = new httprequest();
 const ipc = require('electron').ipcRenderer;
 function pw(){
     ipc.send("pw");
@@ -8,7 +8,7 @@ function addpw(){
     ipc.send("addpw");
 }
 function weibo(){
-    //httprequest.respone();
+    server.respone();
     ipc.send("weibo");
 }
 function newClose(){

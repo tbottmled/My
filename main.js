@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app,BrowserWindow,session} = require('electron')
 const ipc = require('electron').ipcMain;
 const path = require('path')
 const http = require('http');
@@ -95,6 +95,23 @@ ipc.on('login',(event, arg)=>{
   })
   newwin.loadURL(arg); //new.html是新开窗口的渲染进程
   newwin.webContents.openDevTools();
+})
+
+ipc.on('authcode',(event, arg)=>{
+  console.log(arg);
+  var cookie = {
+    url: "http://localhost",
+    name: "code", 
+    value: arg
+  };
+  session.defaultSession.cookies.set(cookie,(error) => {
+    if(error) console.log(error);
+  })
+  session.defaultSession.cookies.get({url: "http://localhost"}, function (error, cookies) {
+    if (cookies.length > 0) {
+      console.log("test");
+    }
+  });
 })
 
 ipc.on('wbloginclose',()=>{

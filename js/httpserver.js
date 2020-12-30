@@ -1,23 +1,23 @@
-var http = require('http');
-var url = require('url');
-var request = require('request');
-var qs=require('querystring');
+const Httpserver = {};
 
-var SqliteDB = require('../js/db.js').SqliteDB;
-var sqlitedb = new SqliteDB('my.db');
+const session = require('electron').remote.session;
+const http = require('http');
+const https = require('https');
+const URL = require('url');
+const request = require('request');
+const qs=require('querystring');
+const zlib = require('zlib');
+const SqliteDB = require('../js/db.js').SqliteDB;
+const sqlitedb = new SqliteDB('my.db');
 
-// Httpserver.server = function(){
-
-// }
-
-function Request(cookie) {
+Httpserver.server = function(cookie){
 	this.cookies = [];
 	if (cookie !== undefined) {
 		this.setCookie(cookie);
 	}
 }
 
-Request.prototype.getHeaders = function(host, postData) {
+Httpserver.server.prototype.getHeaders = function(host, postData) {
 	let headers = {
 		'Host': host,
 		'Pragma': 'no-cache',
@@ -37,7 +37,7 @@ Request.prototype.getHeaders = function(host, postData) {
 	return headers;
 }
 
-Request.prototype.setCookie = function(cookie) {
+Httpserver.server.prototype.setCookie = function(cookie) {
 	let cookies = cookie.split(';');
 	for (let c of cookies) {
 		c = c.replace(/^\s/, '');
@@ -46,7 +46,7 @@ Request.prototype.setCookie = function(cookie) {
 	return this;
 }
 
-Request.prototype.request = function(method, url, params) {
+Httpserver.server.prototype.request = function(method, url, params) {
 	let postData = qs.stringify(params || {});
 	let urlObj = URL.parse(url);
 	let protocol = urlObj.protocol;
@@ -90,28 +90,48 @@ Request.prototype.request = function(method, url, params) {
 	})
 }
 
-Request.prototype.get = function(url) {
+Httpserver.server.prototype.get = function(url) {
 	return this.request('GET', url, null);
 }
 
-Request.prototype.post = function(url, params) {
+Httpserver.server.prototype.post = function(url, params) {
 	return this.request('POST', url, params);
 }
 
 
 
-Request.prototype.respone = function HeepRespone(){
+Httpserver.server.prototype.respone = function HeepRespone(){
     http.createServer(function(req,res){
-        var arg = url.parse(req.url).query;
+		var test;
+        var arg = URL.parse(req.url).query;
         var code = qs.parse(arg)['code']; 
         res.end(code);
         //保存到数据库
-        var insertTileSql = "insert into userinfo (code) values(?);";
-        var arr = new Array(1);
-        arr[0] = code;
-        var arrdata = new Array(arr);
-        console.log(arrdata);
-        sqlitedb.insertData(insertTileSql,arrdata);
+        // var insertTileSql = "insert into userinfo (code) values(?);";
+        // var arr = new Array(1);
+        // arr[0] = code;
+        // var arrdata = new Array(arr);
+        // console.log(arrdata);
+		// sqlitedb.insertData(insertTileSql,arrdata);
+		console.log("准备存入session");
+		ipc.send("authcode",code);
+		// var cookie = {
+        //     url: "http://localhost",
+        //     name: "code", 
+        //     value: code
+        // };
+        // session.defaultSession.cookies.set(cookie,(error) => {
+        //     if(error) console.log(error);
+		// })
+		// session.defaultSession.cookies.get({ url: "http://localhost" }, function (error, cookies) {
+		// 	console.log(cookies);
+		// 	if (cookies.length > 0) {
+		// 		code = cookies[0].code + "test";
+		// 		// this.server.post("https://api.weibo.com/oauth2/access_token?client_id=2110492170&client_secret=6d623742beb0d11d930e5fbb91d82cae&grant_type=authorization_code&code="+
+		// 		// cookies[0].code +"&redirect_uri=http://127.0.0.1:8050/code_handle","");
+		// 	}
+		// });
+		// console.log(code);
     }).listen(8050);
 }
 
@@ -143,7 +163,7 @@ Request.prototype.respone = function HeepRespone(){
 //     });
 // }
 
-//module.exports.server = Httpserver.server;
-module.exports = function(cookie) {
-	return new Request(cookie);
-}
+module.exports.server = Httpserver.server;
+// module.exports = function(cookie) {
+// 	return new Request(cookie);
+// }
