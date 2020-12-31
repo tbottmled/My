@@ -20,6 +20,7 @@
     "electron": "^9.2.0"
   },
   "dependencies": {
+    "electron-localstorage": "^1.0.5",
     "electron-rebuild": "^1.11.0",
     "layui-src": "^2.5.5",
     "sqlite3": "^5.0.0"

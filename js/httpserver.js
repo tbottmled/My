@@ -1,6 +1,5 @@
 const Httpserver = {};
 
-const session = require('electron').remote.session;
 const http = require('http');
 const https = require('https');
 const URL = require('url');
@@ -9,6 +8,10 @@ const qs=require('querystring');
 const zlib = require('zlib');
 const SqliteDB = require('../js/db.js').SqliteDB;
 const sqlitedb = new SqliteDB('my.db');
+const path = require('path');
+//localstorage
+const storage = require('electron-localstorage');
+storage.setStoragePath(path.join(__dirname, 'restore.json'));
 
 Httpserver.server = function(cookie){
 	this.cookies = [];
@@ -114,7 +117,8 @@ Httpserver.server.prototype.respone = function HeepRespone(){
         // console.log(arrdata);
 		// sqlitedb.insertData(insertTileSql,arrdata);
 		console.log("准备存入session");
-		ipc.send("authcode",code);
+		storage.setItem('code',code);
+		console.log("存入完成");
 		// var cookie = {
         //     url: "http://localhost",
         //     name: "code", 

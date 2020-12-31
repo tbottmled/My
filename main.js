@@ -1,8 +1,9 @@
 // Modules to control application life and create native browser window
-const {app,BrowserWindow,session} = require('electron')
+const {app,BrowserWindow} = require('electron')
 const ipc = require('electron').ipcMain;
-const path = require('path')
+const path = require('path');
 const http = require('http');
+const storage = require('electron-localStorage');
 let newwin;
 let mainwin;
 var position;
@@ -86,7 +87,7 @@ ipc.on('weibo',()=>{
 
 ipc.on('login',(event, arg)=>{
   newwin = new BrowserWindow({
-    width: 690, 
+    width: 690,
     height: 400,
     parent: newwin,
     webPreferences: {
@@ -95,23 +96,6 @@ ipc.on('login',(event, arg)=>{
   })
   newwin.loadURL(arg); //new.html是新开窗口的渲染进程
   newwin.webContents.openDevTools();
-})
-
-ipc.on('authcode',(event, arg)=>{
-  console.log(arg);
-  var cookie = {
-    url: "http://localhost",
-    name: "code", 
-    value: arg
-  };
-  session.defaultSession.cookies.set(cookie,(error) => {
-    if(error) console.log(error);
-  })
-  session.defaultSession.cookies.get({url: "http://localhost"}, function (error, cookies) {
-    if (cookies.length > 0) {
-      console.log("test");
-    }
-  });
 })
 
 ipc.on('wbloginclose',()=>{

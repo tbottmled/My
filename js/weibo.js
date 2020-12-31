@@ -1,12 +1,17 @@
 //http服务
 var httprequest = require('../js/httpserver.js').server;
 var server = new httprequest();
+const path = require('path');
+//localstorage
+const storage = require('electron-localstorage');
+//storage.setStoragePath(path.join(__dirname, 'restore.json'));
+//和主线程通信
+const ipc = require('electron').ipcRenderer;
 //var session = require('electron').remote.session;
 //数据库服务
 var SqliteDB = require('../js/db.js').SqliteDB;
 var sqlitedb = new SqliteDB('my.db');
-//和主线程通信
-const ipc = require('electron').ipcRenderer;
+
 //登陆参数
 var code = "";
 var loginurl = "https://api.weibo.com/oauth2/authorize";
@@ -45,10 +50,12 @@ function login(){
     //         console.log(code);
     //     }
     // });
-
+    code = storage.getItem('code');
+    console.log(code);
+    //console.log(tokenurl + "?client_id=" + appkey + "&client_secret=" + appsecret + "&grant_type=authorization_code"+ "&code=" + code + "&redirect_uri=" + callbackurl);
     var token = server.post(tokenurl + "?client_id=" + appkey + "&client_secret=" + 
         appsecret + "&grant_type=authorization_code"+ "&code=" + code + "&redirect_uri=" + callbackurl,"");
-    console.log(token);
+    console.log(Promise.resolve(token));
     //关闭登录窗口
     //ipc.send("wbloginclose");
     //关闭数据库
