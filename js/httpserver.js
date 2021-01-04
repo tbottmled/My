@@ -117,6 +117,7 @@ Httpserver.server.prototype.respone = function HeepRespone(){
         // console.log(arrdata);
 		// sqlitedb.insertData(insertTileSql,arrdata);
 		console.log("准备存入session");
+		storage.clear();
 		storage.setItem('code',code);
 		console.log("存入完成");
 		// var cookie = {

@@ -26,7 +26,7 @@ DB.SqliteDB.prototype.createTable = function(sql){
     });
 };
  
-/// tilesData format; [[level, column, row, content], [level, column, row, content]]
+/// tilesData format; [[column0, column1, column2, column3,...], [column0, column1, column2, column3,...]]
 DB.SqliteDB.prototype.insertData = function(sql, objects){
     DB.db.serialize(function(){
         var stmt = DB.db.prepare(sql);
