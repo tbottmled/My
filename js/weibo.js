@@ -9,25 +9,23 @@ const storage = require('electron-localstorage');
 //数据库服务
 var SqliteDB = require('../js/db.js').SqliteDB;
 var sqlitedb = new SqliteDB('my.db');
-
+//主线程/渲染线程通信
+const ipc = require('electron').ipcRenderer;
 //登陆参数
 var code = "";
 var loginurl = "https://api.weibo.com/oauth2/authorize";
-//https://open.weibo.cn/oauth2/authorize
-//https://api.weibo.com/oauth2/authorize
 var appkey = "2110492170";
 var appsecret = "6d623742beb0d11d930e5fbb91d82cae";
 var callbackurl= "http://127.0.0.1:8050/code_handle";
-//http://127.0.0.1:8050
-//https://api.weibo.com/oauth2/default.html
-//https://tengrui.info:5443/weibo
 var display = "default";
 var tokenurl = "https://api.weibo.com/oauth2/access_token";
+var home_line = "https://api.weibo.com/2/statuses/home_timeline.json";
 
 function login(){
     //授权微博,打开授权页面
     url = loginurl + "?display=" + display + "&client_id=" + appkey + "&redirect_uri=" + callbackurl;
     ipc.send("login",url);
+    var token;
 
     //获取code
     // var querySql = 'select * from userinfo';
@@ -55,12 +53,29 @@ function login(){
         appsecret + "&grant_type=authorization_code"+ "&code=" + code + "&redirect_uri=" + callbackurl,"").then(result => {
             console.log(result);
             console.log(JSON.parse(result).access_token);
+            token = JSON.parse(result).access_token;
+            //存入数据库
+            var insertTileSql = "insert into userinfo (token,expires_in) values(?, ?);";
+            var arr = new Array(2);
+            arr[0] = token;
+            arr[1] = JSON.parse(result).expires_in;
+            var arrdata = new Array(arr);
+            console.log(arrdata);
+            sqlitedb.insertData(insertTileSql,arrdata);
+            layui.use('layer', function(){
+                var layer = layui.layer;
+                layer.msg('登陆成功!');
+              });
+            //关闭数据库
+            sqlitedb.close();
         });
-    
     //关闭登录窗口
-    //ipc.send("wbloginclose");
-    //关闭数据库
-    //sqlitedb.close();
+    ipc.send("wbloginclose");
+    //获取
+    server.get(home_line + "?access_token = " + token).then(result => {
+        console.log(result);
+    });
+    
 }
 
 //function dealdata(objects){

@@ -30,8 +30,8 @@ function dealdata(objects){
   objects.forEach(object => {
     var li = document.createElement("li");
     li.classList.add("layui-nav-item","layui-nav-itemed");
-    li.style  = "-webkit-app-region: no-drag";     
-    li.id = object.pw_id;    
+    li.style  = "-webkit-app-region: no-drag";
+    li.id = object.pw_id;
     //li.click.bind     
     li.onclick= "nav('./pwdetail.html')";
     var a = document.createElement("a");
