@@ -68,13 +68,16 @@ function login(){
               });
             //关闭数据库
             sqlitedb.close();
-        });
-    //关闭登录窗口
-    ipc.send("wbloginclose");
-    //获取
-    server.get(home_line + "?access_token = " + token).then(result => {
-        console.log(result);
-    });
+        }).then(() => {
+        //关闭登录窗口
+            //ipc.send("wbloginclose");
+            //获取
+            console.log(token);
+            server.get(home_line + "?access_token=" + token).then(result => {
+                console.log(result);
+            });
+        })
+    
     
 }
 
