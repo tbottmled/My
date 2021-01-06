@@ -1,0 +1,29 @@
+.main {
+    display: grid;
+    width: 200px;
+    grid-template-columns: 50px 70px 20px;
+    font-size: 10px;
+}
+
+.col-1 img {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+}
+
+.col-1 {
+    margin: 1px;
+    overflow: hidden;
+}
+
+.col-2 {
+    height: 50px;
+    display: grid;
+    grid-template-rows: 20px 10px;
+    line-height: 28px;
+}
+
+.col-3 {
+    text-align: center;
+    margin: auto 10px;
+}
