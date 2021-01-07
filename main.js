@@ -37,7 +37,7 @@ function createWindow () {
   position = mainwin.getPosition();
   mainwin.setPosition(position[0] - 300,position[1])
   // Open the DevTools.
-  mainwin.webContents.openDevTools();
+  //mainwin.webContents.openDevTools();
 }
 
 ipc.on('pw',()=>{
@@ -54,7 +54,7 @@ ipc.on('pw',()=>{
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
   //newwin.
   newwin.setPosition(position[0] - 235,position[1]);
-  newwin.webContents.openDevTools();
+  //newwin.webContents.openDevTools();
 })
 
 ipc.on('addpw',()=>{
@@ -68,14 +68,15 @@ ipc.on('addpw',()=>{
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/addpw.html')); //new.html是新开窗口的渲染进程
-  newwin.webContents.openDevTools();
+  //newwin.webContents.openDevTools();
 })
 
 ipc.on('weibo',()=>{
   newwin = new BrowserWindow({
     width: 400, 
-    height: 600,
+    height: 700,
     parent: mainwin,
+    useContentSize: true,
     frame: false,
     webPreferences: {
       nodeIntegration: true//注入node模块
@@ -90,12 +91,13 @@ ipc.on('login',(event, arg)=>{
     width: 690,
     height: 400,
     parent: newwin,
+    frame: false,
     webPreferences: {
       nodeIntegration: true//注入node模块
     }
   })
   newwin.loadURL(arg); //new.html是新开窗口的渲染进程
-  newwin.webContents.openDevTools();
+  //newwin.webContents.openDevTools();
 })
 
 ipc.on('wbloginclose',()=>{
