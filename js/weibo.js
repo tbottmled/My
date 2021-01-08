@@ -78,6 +78,13 @@ function login(){
             });
         })    
 }
+//解析weibo内容
+function dealweibo(res){
+  var wbcintainer = document.getElementById("wbcintainer");
+  res.statuses.forEach(element => {
+    
+  });
+}
 
 layui.use('element', function(){
     var element = layui.element;
