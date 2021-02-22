@@ -1,13 +1,12 @@
 const Httpserver = {};
-
 const http = require('http');
 const https = require('https');
 const URL = require('url');
 const request = require('request');
 const qs=require('querystring');
 const zlib = require('zlib');
-const SqliteDB = require('../js/db.js').SqliteDB;
-const sqlitedb = new SqliteDB('my.db');
+// const SqliteDB = require('../js/db.js').SqliteDB;
+// const sqlitedb = new SqliteDB('my.db');
 const path = require('path');
 //localstorage
 const storage = require('electron-localstorage');
@@ -18,6 +17,10 @@ Httpserver.server = function(cookie){
 	if (cookie !== undefined) {
 		this.setCookie(cookie);
 	}
+}
+
+Httpserver.server.post = function(url, params) {
+	return this.request('POST', url, params);
 }
 
 Httpserver.server.prototype.getHeaders = function(host, postData) {

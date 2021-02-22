@@ -37,12 +37,28 @@ function createWindow () {
   position = mainwin.getPosition();
   mainwin.setPosition(position[0] - 300,position[1])
   // Open the DevTools.
-  //mainwin.webContents.openDevTools();
+  mainwin.webContents.openDevTools();
 }
+
+ipc.on('httpserver-req', (event, arg) => {
+  const httpserver = require('./js/httpserver.js').server;
+  const server = new httpserver();
+
+  console.log(arg);
+  event.sender.send('httpserver-res', server);
+ })
+
+ipc.on('DB-req', (event, arg) => {
+  var DB = require('./js/db.js').SqliteDB;
+  var sdb = new DB('my.db');
+
+  console.log(arg);
+  event.sender.send('DB-res', sdb);
+ })
 
 ipc.on('pw',()=>{
   newwin = new BrowserWindow({
-    width: 900, 
+    width: 900,
     height: 600,
     parent: mainwin,
     frame: false,
@@ -54,7 +70,7 @@ ipc.on('pw',()=>{
   newwin.loadURL(path.join('file:',__dirname,'page/pwmanager.html')); //new.html是新开窗口的渲染进程
   //newwin.
   newwin.setPosition(position[0] - 235,position[1]);
-  //newwin.webContents.openDevTools();
+  newwin.webContents.openDevTools();
 })
 
 ipc.on('addpw',()=>{
@@ -68,7 +84,7 @@ ipc.on('addpw',()=>{
     }
   })
   newwin.loadURL(path.join('file:',__dirname,'page/addpw.html')); //new.html是新开窗口的渲染进程
-  //newwin.webContents.openDevTools();
+  newwin.webContents.openDevTools();
 })
 
 ipc.on('weibo',()=>{
@@ -97,7 +113,7 @@ ipc.on('login',(event, arg)=>{
     }
   })
   newwin.loadURL(arg); //new.html是新开窗口的渲染进程
-  //newwin.webContents.openDevTools();
+  newwin.webContents.openDevTools();
 })
 
 ipc.on('wbloginclose',()=>{
@@ -128,7 +144,3 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-// function dataDeal(objects){
-//   queryData = objects;
-// }

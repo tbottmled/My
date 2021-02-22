@@ -59,7 +59,7 @@ DB.SqliteDB.prototype.selectAll = function select_user(sql,data){
 		}
     });
 }
- 
+
 DB.SqliteDB.prototype.executeSql = function(sql){
     DB.db.run(sql, function(err){
         if(null != err){
