@@ -40,21 +40,21 @@ function createWindow () {
   mainwin.webContents.openDevTools();
 }
 
-ipc.on('httpserver-req', (event, arg) => {
-  const httpserver = require('./js/httpserver.js').server;
-  const server = new httpserver();
+// ipc.on('httpserver-req', (event, arg) => {
+//   const httpserver = require('./js/httpserver.js').server;
+//   const server = new httpserver();
 
-  console.log(arg);
-  event.sender.send('httpserver-res', server);
- })
+//   console.log(arg);
+//   event.sender.send('httpserver-res', server);
+//  })
 
-ipc.on('DB-req', (event, arg) => {
-  var DB = require('./js/db.js').SqliteDB;
-  var sdb = new DB('my.db');
+// ipc.on('DB-req', (event, arg) => {
+//   var DB = require('./js/db.js').SqliteDB;
+//   var sdb = new DB('my.db');
 
-  console.log(arg);
-  event.sender.send('DB-res', sdb);
- })
+//   console.log(arg);
+//   event.sender.send('DB-res', sdb);
+//  })
 
 ipc.on('pw',()=>{
   newwin = new BrowserWindow({
@@ -89,7 +89,7 @@ ipc.on('addpw',()=>{
 
 ipc.on('weibo',()=>{
   newwin = new BrowserWindow({
-    width: 400, 
+    width: 500, 
     height: 700,
     parent: mainwin,
     useContentSize: true,

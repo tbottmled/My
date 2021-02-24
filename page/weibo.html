@@ -8,25 +8,25 @@
     <link rel="stylesheet" href="../css/layui/css/layui.css">
     <link rel="stylesheet" href="../css/weibo.css">
     <script src="../css/layui/layui.js"></script>
-    <script src="./js/my.js"></script>
+    <script src="../js/my.js"></script>
     <script src="../js/weibo.js"></script>
   </head>
-  <body class="layui-layout-body layui-bg-black" style="-webkit-app-region:drag;height:100%;width:100%;">
+  <body class="layui-layout-body layui-bg-black" style="-webkit-app-region:drag;height:100%;width:100%;" onload="login()">
     <!-- <div class="layui-header" >
       <div class="layui-card-header">
         <img src="https://tva4.sinaimg.cn/crop.391.63.457.457.50/6ea15bbfjw8ewymd2jsgdj20yg1cp44c.jpg?KID=imgbed,tva&Expires=1609934551&ssig=4rKlBJHDP2">
       </div>
       <div type="button" onclick="login()" class="layui-btn layui-bg-gray layui-btn-radius layui-btn-fluid" style="-webkit-app-region:no-drag">登陆微博</div>
     </div> -->
-    <div class="layui-tab layui-tab-card" lay-filter="docDemoTabBrief" >
+    <div class="layui-tab layui-tab-card" lay-filter="docDemoTabBrief">
       <ul class="layui-tab-title" style="grid-template-columns: auto auto auto;">
         <li class="layui-this" style="-webkit-app-region:no-drag;width: 20%;">我关注的</li>
         <li style="-webkit-app-region:no-drag;width: 20%;">发现</li>
         <li style="-webkit-app-region:no-drag;width: 35%;">消息</li>
       </ul>
       <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show" >
-          <div id="wbcintainer" class="layui-container" style="height:80%;overflow:auto;">
+        <div class="layui-tab-item layui-show">
+          <div id="wbcintainer" class="layui-container" style="height:100%;">
             <!-- <div  class="layui-card" style="-webkit-app-region:no-drag">
               <div class="layui-card-header">
                 <img src="https://tvax1.sinaimg.cn/crop.0.0.800.800.50/6cd6d028ly8fme7am50hlj20m80m83yq.jpg?KID=imgbed,tva&Expires=1610444667&ssig=IrzJBed0vW">
