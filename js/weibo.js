@@ -115,7 +115,7 @@ function dealweibo(res){
   var content = JSON.parse(res);
   if(content.statuses !== undefined){
     content.statuses.forEach(element => {
-      console.log(element.created_at);
+      //console.log(element.created_at);
       var div = document.createElement("div");
       div.classList.add("layui-card");
       div.style  = "-webkit-app-region: no-drag";
